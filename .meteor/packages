@@ -4,5 +4,8 @@
 # but you can also edit it by hand.
 
 standard-app-packages
-autopublish
-insecure
+bootstrap-3
+handlebar-helpers
+accounts-twitter
+accounts-ui
+accounts-base

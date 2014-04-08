@@ -1,0 +1,89 @@
+<template name="newTweet">
+
+  <div class="tweet-options">
+    <div class="form-group">
+      <div class="btn-group">
+        <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+          Repeat ( {{settings.profile.repeatCount}} ) <span class="caret"></span>
+        </button>
+        <ul class="newtweet-repeat-count dropdown-menu">
+          {{#each settings.profile.repeatCountOptions}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+          Interval ( {{settings.profile.intervalValue}} ) <span class="caret"></span>
+        </button>
+        <ul class="newtweet-interval-value dropdown-menu">
+          {{#each settings.profile.intervalValueOptions}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+          {{settings.profile.intervalUnit}} <span class="caret"></span>
+        </button>
+        <ul class="newtweet-interval-unit dropdown-menu">
+          {{#each settings.profile.intervalUnitOptions}}
+            <li>{{title}}</li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="btn-group">
+        {{#if settings.buffer.hasVariations}}
+        {{#if $gt settings.profile.repeatCount 1}}
+        <button class="btn btn-default btn-xs variations-button active">
+          Variations
+          <span class="glyphicon glyphicon-ok"></span>
+        </button>
+        {{else}}
+        <button class="btn btn-default btn-xs variations-button">
+          Variations
+        </button>
+        {{/if}}
+        {{else}}
+        <button class="btn btn-default btn-xs variations-button">
+          Variations
+        </button>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+  <div class="tweet-form">
+    <div class="form-group">
+      <textarea name="main" class="newtweet-text form-control">{{settings.buffer.defaultText}}</textarea>
+    </div>
+    <div class="form-group">
+      <div>
+        {{#each settings.buffer.variations}}
+        {{#if enabled}}
+        <button class="btn btn-default btn-xs">{{toDay time}}</button>
+        {{else}}
+        <button class="btn btn-default btn-xs" disabled>{{toDay time}}</button>
+        {{/if}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+  {{#if settings.buffer.hasVariations}}
+  {{#if $gt settings.profile.repeatCount 1}}
+    {{#each settings.buffer.variations}}
+    <div class="form-group">
+      <label>{{toDay time}}</label>
+      <textarea class="form-control">{{#if text}}{{text}}{{else}}{{settings.buffer.defaultText}}{{/if}}</textarea>
+      <small><a href="#">Use Default</a></small>
+    </div>
+    {{/each}}
+  {{/if}}
+  {{/if}}
+
+  <div class="form-group">
+    <button class="newtweet-post btn btn-block">Post Tweet</button>
+  </div>
+
+</template>
