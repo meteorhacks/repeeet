@@ -1,6 +1,6 @@
 Template.newTweet.helpers({
   settings: getSettings,
-  toDay: getDay
+  toDay: _getDay
 });
 
 Template.newTweet.events({
@@ -18,11 +18,11 @@ function getSettings () {
   };
 }
 
-function getDay (ts) {
-  var days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+function _getDay (ts) {
+  var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   var date = new Date(ts);
   var day = date.getDay();
-  var time = date.getHours() + ':' + date.getMinutes();
+  var time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
   return days[day] + ' ' + time;
 }
 
@@ -50,11 +50,9 @@ function updatePostText (e) {
 function postNewTweet () {
   if (Meteor.userId()) {
     var settings = Settings.findOne({_id: Meteor.userId()});
+    settings.buffer.variations = _recalculateVariations();
+    settings.buffer.userId = Meteor.userId();
     Tweets.insert(settings.buffer);
-    Settings.update(
-      {_id: Meteor.userId()},
-      {$set: {buffer: Defaults.Tweets(Meteor.userId())}}
-    );
   };
 }
 
@@ -64,7 +62,7 @@ function updateRepeatCount (e) {
     Settings.update(
       {_id: Meteor.userId()},
       {$set: {
-          'buffer.variations': recalculateVariations(count),
+          'buffer.variations': _recalculateVariations(count),
           'profile.repeatCount': count
         }
       }
@@ -78,7 +76,7 @@ function updateIntervalValue (e) {
     Settings.update(
       {_id: Meteor.userId()},
       {$set: {
-          'buffer.variations': recalculateVariations(null, interval),
+          'buffer.variations': _recalculateVariations(null, interval),
           'profile.intervalValue': interval
         }
       }
@@ -92,7 +90,7 @@ function updateIntervalUnit (e) {
     Settings.update(
       {_id: Meteor.userId()},
       {$set: {
-          'buffer.variations': recalculateVariations(null, null, unit),
+          'buffer.variations': _recalculateVariations(null, null, unit),
           'profile.intervalUnit': unit
         }
       }
@@ -100,7 +98,7 @@ function updateIntervalUnit (e) {
   };
 }
 
-function recalculateVariations (_count, _interval, _unit) {
+function _recalculateVariations (_count, _interval, _unit) {
   var settings = Settings.findOne({_id: Meteor.userId()});
   var count = _count || settings.profile.repeatCount;
   var unit = _unit || settings.profile.intervalUnit;
@@ -119,11 +117,11 @@ function recalculateVariations (_count, _interval, _unit) {
     if (!variations[i]) {
       variations[i] = {
         text: false,
-        time: date.getTime() + intervalUnitOpt.minutes*interval*i,
+        time: date.getTime() + intervalUnitOpt.millis*interval*i,
         enabled: true
       };
     } else {
-      variations[i].time = date.getTime() + intervalUnitOpt.minutes*interval*i;
+      variations[i].time = date.getTime() + intervalUnitOpt.millis*interval*i;
     };
   }
   return variations.slice(0, count);

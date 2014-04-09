@@ -13,7 +13,7 @@ Meteor.publish('settings', function() {
     var cursor = Settings.find(selector);
     if(cursor.count() == 0) {
       var newSettings = Defaults.Settings();
-      newSettings._id = this.userId;
+      newSettings.buffer.userId =
       Settings.insert(newSettings);
     }
     return cursor;

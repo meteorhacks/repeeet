@@ -7,5 +7,7 @@ standard-app-packages
 bootstrap-3
 handlebar-helpers
 accounts-twitter
-accounts-ui
 accounts-base
+http
+npm
+accounts-ui-bootstrap-3-blaze

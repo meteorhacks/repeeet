@@ -7,10 +7,10 @@ Template.tweetItem.events({
 });
 
 function getDay (ts) {
-  var days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   var date = new Date(ts);
   var day = date.getDay();
-  var time = date.getHours() + ':' + date.getMinutes();
+  var time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
   return days[day] + ' ' + time;
 }
 

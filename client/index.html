@@ -4,7 +4,9 @@
 
 <body>
   {{> topNavbar}}
+  {{#if currentUser}}
   <div class="container">
     {{> dashboard}}
   </div>
+  {{/if}}
 </body>

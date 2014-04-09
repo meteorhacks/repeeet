@@ -57,25 +57,31 @@
     <div class="form-group">
       <textarea name="main" class="newtweet-text form-control">{{settings.buffer.defaultText}}</textarea>
     </div>
+  </div>
+<!--
     <div class="form-group">
-      <div>
-        {{#each settings.buffer.variations}}
-        {{#if enabled}}
-        <button class="btn btn-default btn-xs">{{toDay time}}</button>
-        {{else}}
-        <button class="btn btn-default btn-xs" disabled>{{toDay time}}</button>
-        {{/if}}
-        {{/each}}
-      </div>
+      {{#each settings.buffer.variations}}
+      {{#if enabled}}
+      <button class="btn btn-default btn-xs">{{toDay time}}</button>
+      {{else}}
+      <button class="btn btn-default btn-xs" disabled>{{toDay time}}</button>
+      {{/if}}
+      {{/each}}
     </div>
   </div>
+-->
 
   {{#if settings.buffer.hasVariations}}
   {{#if $gt settings.profile.repeatCount 1}}
     {{#each settings.buffer.variations}}
     <div class="form-group">
       <label>{{toDay time}}</label>
-      <textarea class="form-control">{{#if text}}{{text}}{{else}}{{settings.buffer.defaultText}}{{/if}}</textarea>
+      {{#if text}}
+      <textarea class="form-control">{{text}}</textarea>
+      {{else}}
+      <textarea class="form-control">{{settings.buffer.defaultText}}</textarea>
+      {{/if}}
+      <!-- <textarea class="form-control">{{#if text}}{{text}}{{else}}{{settings.buffer.defaultText}}{{/if}}</textarea> -->
       <small><a href="#">Use Default</a></small>
     </div>
     {{/each}}
