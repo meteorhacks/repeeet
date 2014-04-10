@@ -1,7 +1,6 @@
 Meteor.publish('tweets', function() {
   if (this.userId) {
-    var selector = {userId: this.userId};
-    return Tweets.find(selector);
+    return Tweets.find({userId: this.userId});
   } else {
     this.ready();
   }
@@ -9,8 +8,7 @@ Meteor.publish('tweets', function() {
 
 Meteor.publish('settings', function() {
   if (this.userId) {
-    var selector = {_id: this.userId};
-    var cursor = Settings.find(selector);
+    var cursor = Settings.find({_id: this.userId});
     if(cursor.count() == 0) {
       var newSettings = Defaults.Settings();
       newSettings.buffer.userId =
