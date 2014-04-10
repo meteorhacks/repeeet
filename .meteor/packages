@@ -11,3 +11,4 @@ accounts-base
 http
 npm
 accounts-ui-bootstrap-3-blaze
+iron-router

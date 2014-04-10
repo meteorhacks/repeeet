@@ -2,11 +2,10 @@
   <title>Repeeet</title>
 </head>
 
-<body>
-  {{> topNavbar}}
+<template name="index">
   {{#if currentUser}}
-  <div class="container">
-    {{> dashboard}}
-  </div>
+  {{> dashboard}}
+  {{else}}
+  {{> guest}}
   {{/if}}
-</body>
+</template>

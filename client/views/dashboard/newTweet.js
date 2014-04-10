@@ -1,75 +1,107 @@
 Template.newTweet.helpers({
   settings: getSettings,
+  buffer: getBuffer,
+  variations: getVariations,
   toDay: Repeeet.getDay
 });
 
 Template.newTweet.events({
   'click .variations-button': toggleVariations,
-  'keydown .newtweet-text': updatePostText,
-  'click .newtweet-post': postNewTweet,
   'click .newtweet-repeat-count li': updateRepeatCount,
   'click .newtweet-interval-value li': updateIntervalValue,
   'click .newtweet-interval-unit li': updateIntervalUnit,
+  'keydown .newtweet-text': updatePostText,
+  'keydown .newtweet-variation': updateVariationText,
+  'click .newtweet-post': postNewTweet
 });
 
+Meteor.startup(function () {
+  Session.setDefault('settings', Defaults.Settings());
+  Session.setDefault('buffer', Defaults.Tweets());
+})
+
 function getSettings () {
-  if (Meteor.userId()) {
-    return Settings.findOne({_id: Meteor.userId()});
-  };
+  return Session.get('settings');
+}
+
+function getBuffer () {
+  return Session.get('buffer');
+}
+
+function getVariations () {
+  var buffer = Session.get('buffer');
+  for(var i=buffer.variations.length;i-->0;)
+    buffer.variations[i].__index = i;
+  return buffer.variations;
 }
 
 function toggleVariations () {
-  if (Meteor.userId()) {
-    var settings = Settings.findOne({_id: Meteor.userId()});
-    settings.buffer.hasVariations = !settings.buffer.hasVariations;
-    Settings.update( {_id: Meteor.userId()}, settings);
-  };
+  var settings = Session.get('settings');
+  settings.hasVariations = !settings.hasVariations;
+  if (!settings.hasVariations)
+    resetVariations();
+  Session.set('settings', settings);
+}
+
+function updateRepeatCount (e) {
+  var settings = Session.get('settings');
+  settings.repeatCount = parseInt(e.target.innerText);
+  Session.set('settings', settings);
+  updateVariations();
+}
+
+function updateIntervalValue (e) {
+  var settings = Session.get('settings');
+  settings.intervalValue = parseInt(e.target.innerText);
+  Session.set('settings', settings);
+  updateVariations();
+}
+
+function updateIntervalUnit (e) {
+  var settings = Session.get('settings');
+  settings.intervalUnit = e.target.innerText;
+  Session.set('settings', settings);
+  updateVariations();
+}
+
+function updateVariations () {
+  var buffer = Session.get('buffer');
+  var settings = Session.get('settings');
+  buffer.variations = Repeeet.getVariations(null, settings);
+  Session.set('buffer', buffer);
+}
+
+function resetVariations () {
+  var buffer = Session.get('buffer');
+  var settings = Session.get('settings');
+  buffer.variations = Repeeet.getEmptyVariations(null, settings);
+  Session.set('buffer', buffer);
 }
 
 function updatePostText (e) {
-  if (Meteor.userId()) {
-    Meteor.defer(function () {
-      var settings = Settings.findOne({_id: Meteor.userId()});
-      settings.buffer.variations = Repeeet.recalculateVariations();
-      settings.buffer.defaultText = e.target.value();
-      Settings.update( {_id: Meteor.userId()}, settings);
-    });
-  };
+  Meteor.defer(function () {
+    var buffer = Session.get('buffer');
+    buffer.defaultText = e.target.value;
+    Session.set('buffer', buffer);
+  });
+}
+
+function updateVariationText (e) {
+  Meteor.defer(function () {
+    var buffer = Session.get('buffer');
+    var idx = e.target.dataset.index;
+    buffer.variations[idx].text = e.target.value;
+    if (buffer.variations[idx].text === '')
+      buffer.variations[idx].text = null;
+    Session.set('buffer', buffer);
+  });
 }
 
 function postNewTweet () {
   if (Meteor.userId()) {
-    var settings = Settings.findOne({_id: Meteor.userId()});
-    settings.buffer.variations = Repeeet.recalculateVariations();
-    settings.buffer.userId = Meteor.userId();
-    Settings.update( {_id: Meteor.userId()}, settings);
-    Tweets.insert(settings.buffer);
-  };
-}
-
-function updateRepeatCount (e) {
-  if (Meteor.userId()) {
-    var count = parseInt(e.target.innerText);
-    settings.profile.repeatCount = count;
-    settings.buffer.variations = Repeeet.recalculateVariations(count);
-    Settings.update( {_id: Meteor.userId()}, settings);
-  };
-}
-
-function updateIntervalValue (e) {
-  if (Meteor.userId()) {
-    var interval = parseInt(e.target.innerText);
-    settings.profile.intervalValue = interval;
-    settings.buffer.variations = Repeeet.recalculateVariations(null, interval);
-    Settings.update( {_id: Meteor.userId()}, settings);
-  };
-}
-
-function updateIntervalUnit (e) {
-  if (Meteor.userId()) {
-    var unit = e.target.innerText;
-    settings.profile.intervalUnit = unit;
-    settings.buffer.variations = Repeeet.recalculateVariations(null, null, unit);
-    Settings.update( {_id: Meteor.userId()}, settings);
+    Meteor.call('repeeet', Session.get('buffer'));
+    Session.set('buffer', Defaults.Tweets());
+  } else {
+    Meteor.loginWithTwitter();
   };
 }

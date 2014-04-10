@@ -5,7 +5,8 @@
       "bootstrap-3": {},
       "handlebar-helpers": {},
       "npm": {},
-      "accounts-ui-bootstrap-3-blaze": {}
+      "accounts-ui-bootstrap-3-blaze": {},
+      "iron-router": {}
     },
     "packages": {
       "bootstrap-3": {
@@ -27,6 +28,16 @@
         "git": "https://github.com/rajit/meteor-accounts-ui-bootstrap-3.git",
         "tag": "v0.3.6",
         "commit": "e8b1d1f9a2518dd91562f8096bd0831ae27e4e41"
+      },
+      "iron-router": {
+        "git": "https://github.com/EventedMind/iron-router.git",
+        "tag": "v0.7.0",
+        "commit": "05f34bc48c4cad9fdaa366c1ddcabe6980232ece"
+      },
+      "blaze-layout": {
+        "git": "https://github.com/EventedMind/blaze-layout.git",
+        "tag": "v0.2.2",
+        "commit": "8bc53798fe5965669ae67c72f91829fcfdceabfd"
       }
     }
   }

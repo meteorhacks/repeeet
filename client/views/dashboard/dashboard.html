@@ -1,18 +1,17 @@
 <template name="dashboard">
 
+  {{> topNavbar}}
+
   <div class="row">
 
 
-    <div class="col-xs-12 col-md-7">
-
-      {{> newTweet}} <hr>
-      {{> tweetsList}}
-
+    <div class="col-xs-12 col-md-5 col-md-offset-1">
+      {{> newTweet}}
     </div>
 
 
     <div class="col-xs-12 col-md-5">
-      <!-- Tweet Logs -->
+      {{> tweetsList}}
     </div>
 
 

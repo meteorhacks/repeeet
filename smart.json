@@ -3,6 +3,7 @@
     "bootstrap-3": {},
     "handlebar-helpers": {},
     "npm": {},
-    "accounts-ui-bootstrap-3-blaze": {}
+    "accounts-ui-bootstrap-3-blaze": {},
+    "iron-router": {}
   }
 }

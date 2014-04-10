@@ -3,9 +3,14 @@ Template.tweetItem.helpers({
 });
 
 Template.tweetItem.events({
-  'click .tweet-delete': deleteTweet
+  'click .tweet-delete': deleteTweet,
+  'click .variation-time-button': showVariation
 });
 
+function showVariation (e) {
+  alert(JSON.stringify(this));
+}
+
 function deleteTweet (e) {
-  Tweets.remove({_id: this._id});
+  Meteor.call('remove', this._id);
 }

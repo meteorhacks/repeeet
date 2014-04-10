@@ -1,0 +1,30 @@
+textarea {
+  resize: none;
+}
+
+.fixed-wrap {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+}
+
+.middle-wrap {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.new-tweet-guest {
+  margin-top: 5rem;
+}
+
+.newtweet-default {
+  font-style: italic;
+  opacity: 0.5;
+}
