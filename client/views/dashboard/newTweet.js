@@ -14,6 +14,7 @@ Template.newTweet.events({
   'keydown .newtweet-text': updatePostText,
   'paste .newtweet-text': updatePostText,
   'keydown .newtweet-variation': updateVariationText,
+  'paste .newtweet-variation': updateVariationText,
   'click .newtweet-post': postNewTweet
 });
 
