@@ -1,14 +1,16 @@
 <template name="tweetItem">
   <div class="tweet-item panel panel-default">
     <div class="panel-body">
-      {{defaultText}}
+      <p class="lead">
+        {{text}}
+      </p>
     </div>
     <div class="panel-footer">
       {{#each variations}}
       {{#if enabled}}
       <button class="btn btn-default btn-xs variation-time-button">{{toDay time}}</button>
       {{else}}
-      <button class="btn btn-default btn-xs variation-time-button" disabled>{{toDay time}}</button>
+      <button class="btn btn-default btn-xs variation-time-button btn-success">{{toDay time}}</button>
       {{/if}}
       {{/each}}
       <div class="pull-right">
