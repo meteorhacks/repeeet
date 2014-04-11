@@ -2,19 +2,15 @@
 
   {{> topNavbar}}
 
-  <div class="row">
-
-
-    <div class="col-xs-12 col-md-5 col-md-offset-1">
-      {{> newTweet}}
-    </div>
-
-
-    <div class="col-xs-12 col-md-5">
-      {{> tweetsList}}
-    </div>
-
-
-  </div><!-- .row -->
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        {{> newTweet}}
+      </div>
+      <div class="col-xs-12 col-md-6">
+        {{> tweetsList}}
+      </div>
+    </div><!-- .row -->
+  </div>
 
 </template>

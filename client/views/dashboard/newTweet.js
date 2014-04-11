@@ -1,8 +1,9 @@
 Template.newTweet.helpers({
   settings: getSettings,
   buffer: getBuffer,
+  length: getLength,
   variations: getVariations,
-  toDay: Repeeet.getDay
+  toDay: Helpers.getDay
 });
 
 Template.newTweet.events({
@@ -11,6 +12,7 @@ Template.newTweet.events({
   'click .newtweet-interval-value li': updateIntervalValue,
   'click .newtweet-interval-unit li': updateIntervalUnit,
   'keydown .newtweet-text': updatePostText,
+  'paste .newtweet-text': updatePostText,
   'keydown .newtweet-variation': updateVariationText,
   'click .newtweet-post': postNewTweet
 });
@@ -26,6 +28,16 @@ function getSettings () {
 
 function getBuffer () {
   return Session.get('buffer');
+}
+
+function getLength () {
+  var tweet = Session.get('buffer');
+  var index = this.__index;
+  if (index !== undefined && tweet.variations[index].text) {
+    return Helpers.getTweetLength(tweet.variations[index].text);
+  } else {
+    return Helpers.getTweetLength(tweet.defaultText);
+  }
 }
 
 function getVariations () {
@@ -67,14 +79,14 @@ function updateIntervalUnit (e) {
 function updateVariations () {
   var buffer = Session.get('buffer');
   var settings = Session.get('settings');
-  buffer.variations = Repeeet.getVariations(null, settings);
+  buffer.variations = Helpers.getVariations(null, settings);
   Session.set('buffer', buffer);
 }
 
 function resetVariations () {
   var buffer = Session.get('buffer');
   var settings = Session.get('settings');
-  buffer.variations = Repeeet.getEmptyVariations(null, settings);
+  buffer.variations = Helpers.getEmptyVariations(null, settings);
   Session.set('buffer', buffer);
 }
 
@@ -87,9 +99,10 @@ function updatePostText (e) {
 }
 
 function updateVariationText (e) {
+  var self = this;
   Meteor.defer(function () {
     var buffer = Session.get('buffer');
-    var idx = e.target.dataset.index;
+    var idx = self.__index;
     buffer.variations[idx].text = e.target.value;
     if (buffer.variations[idx].text === '')
       buffer.variations[idx].text = null;
@@ -99,8 +112,15 @@ function updateVariationText (e) {
 
 function postNewTweet () {
   if (Meteor.userId()) {
-    Meteor.call('repeeet', Session.get('buffer'));
-    Session.set('buffer', Defaults.Tweets());
+    var tweet = Session.get('buffer');
+    var error = Helpers.validateTweet(tweet);
+    if (!error) {
+      Meteor.call('repeeet', tweet);
+      Session.set('buffer', Defaults.Tweets());
+    } else {
+      // TODO Improve error display
+      alert(error);
+    };
   } else {
     Meteor.loginWithTwitter();
   };

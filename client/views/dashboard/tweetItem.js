@@ -1,10 +1,10 @@
 Template.tweetItem.helpers({
-  toDay: Repeeet.getDay
+  toDay: Helpers.getDay
 });
 
 Template.tweetItem.events({
-  'click .tweet-delete': deleteTweet,
-  'click .variation-time-button': showVariation
+  'click .variation-time-button': showVariation,
+  'click .tweet-delete': deleteTweet
 });
 
 function showVariation (e) {
@@ -12,5 +12,10 @@ function showVariation (e) {
 }
 
 function deleteTweet (e) {
-  Meteor.call('remove', this._id);
+  $(e.target).parents('.modal').modal('hide');
+  $(e.target).parents('.tweet-item').hide();
+  var self = this;
+  Meteor.setTimeout(function () {
+    Meteor.call('remove', self._id);
+  }, 1000);
 }

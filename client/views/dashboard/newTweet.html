@@ -2,33 +2,33 @@
 
   <div class="tweet-options">
     <div class="form-group">
-      <div class="btn-group">
-        <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+      <div class="btn-group dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
           Repeeet {{settings.repeatCount}} times<span class="caret"></span>
         </button>
-        <ul class="newtweet-repeat-count dropdown-menu">
+        <ul class="newtweet-repeat-count dropdown-menu" role="menu">
           {{#each settings.repeatCountOptions}}
-            <li>{{this}}</li>
+            <li role="presentation"><a href="#">{{this}}</a></li>
           {{/each}}
         </ul>
       </div>
-      <div class="btn-group">
-        <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+      <div class="btn-group dropdown">
+        <button class="btn btn-default  dropdown-toggle" type="button" data-toggle="dropdown">
           Every {{settings.intervalValue}} <span class="caret"></span>
         </button>
         <ul class="newtweet-interval-value dropdown-menu">
           {{#each settings.intervalValueOptions}}
-            <li>{{this}}</li>
+            <li role="presentation"><a href="#">{{this}}</a></li>
           {{/each}}
         </ul>
       </div>
-      <div class="btn-group">
-        <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+      <div class="btn-group dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
           {{settings.intervalUnit}} <span class="caret"></span>
         </button>
         <ul class="newtweet-interval-unit dropdown-menu">
           {{#each settings.intervalUnitOptions}}
-            <li>{{title}}</li>
+            <li role="presentation"><a href="#">{{title}}</a></li>
           {{/each}}
         </ul>
       </div>
@@ -36,13 +36,9 @@
         {{#if currentUser}}
         {{#if $gt settings.repeatCount 1}}
         {{#if settings.hasVariations}}
-        <button class="btn btn-default btn-xs variations-button active">
-          With Variations
-        </button>
+        <button class="btn btn-default variations-button active">Variations</button>
         {{else}}
-        <button class="btn btn-default btn-xs variations-button">
-          Without Variations
-        </button>
+        <button class="btn btn-default variations-button">Variations</button>
         {{/if}}
         {{/if}}
         {{/if}}
@@ -52,6 +48,7 @@
 
   <div class="tweet-form">
     <div class="form-group">
+      <p><small>{{length}} Characters</small></p>
       <textarea name="main" class="newtweet-text form-control">{{buffer.defaultText}}</textarea>
     </div>
   </div>
@@ -63,9 +60,11 @@
   <div class="form-group">
     <label>{{toDay time}}</label>
     {{#if text}}
-    <textarea class="form-control newtweet-variation" data-index="{{__index}}">{{text}}</textarea>
+    <p><small>{{length}} Characters</small></p>
+    <textarea class="form-control newtweet-variation">{{text}}</textarea>
     {{else}}
-    <textarea class="form-control newtweet-variation newtweet-default" data-index="{{__index}}">{{buffer.defaultText}}</textarea>
+    <p><small>{{length}} Characters</small></p>
+    <textarea class="form-control newtweet-variation newtweet-default">{{buffer.defaultText}}</textarea>
     {{/if}}
   </div>
   {{/each}}
