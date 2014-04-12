@@ -7,11 +7,7 @@
     </div>
     <div class="panel-footer">
       {{#each variations}}
-      {{#if enabled}}
-      <button class="btn btn-default btn-xs variation-time-button">{{toDay time}}</button>
-      {{else}}
-      <button class="btn btn-default btn-xs variation-time-button btn-success">{{toDay time}}</button>
-      {{/if}}
+      <button class="btn btn-default btn-xs variation-time-button {{#if enabled}}{{else}}btn-success{{/if}}">{{toDay time}}</button>
       {{/each}}
       <div class="pull-right">
         <button class="btn btn-default btn-xs" data-toggle="modal" data-target=".tweet-delete-confirm-{{_id}}">
