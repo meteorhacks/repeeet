@@ -32,3 +32,12 @@ textarea {
   font-style: italic;
   opacity: 0.5;
 }
+
+.kawasaki-quote a:hover {
+  text-decoration: none;
+}
+
+.homepage-title {
+  font-size: 15rem;
+  font-variant: small-caps;
+}
