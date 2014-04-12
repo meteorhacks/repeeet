@@ -1,3 +1,7 @@
+#repeeet * {
+  border-radius: 0;
+}
+
 .row.padded {
   padding: 0 5%;
 }
@@ -25,7 +29,7 @@ textarea {
 }
 
 .new-tweet-guest {
-  margin-top: 5rem;
+  margin-top: 2rem;
 }
 
 .newtweet-default {
@@ -37,7 +41,24 @@ textarea {
   text-decoration: none;
 }
 
-.homepage-title {
+.homepage-heading {
   font-size: 15rem;
+  line-height: 1;
   font-variant: small-caps;
+  text-align: center;
+}
+
+.homepage-heading small {
+  color: #333;
+}
+
+.homepage-subheading {
+  font-size: 3rem;
+  line-height: 1;
+  font-variant: small-caps;
+  text-align: center;
+}
+
+.homepage-subheading small {
+  color: #333;
 }
