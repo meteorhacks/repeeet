@@ -10,22 +10,22 @@
       <button class="btn btn-default btn-xs variation-time-button {{#if enabled}}{{else}}btn-success{{/if}}">{{toDay time}}</button>
       {{/each}}
       <div class="pull-right">
-        <button class="btn btn-default btn-xs" data-toggle="modal" data-target=".tweet-delete-confirm-{{_id}}">
-          <span class="glyphicon glyphicon-remove"></span>
+        <button class="btn btn-danger btn-xs" data-toggle="modal" data-target=".tweet-delete-confirm-{{_id}}">
+          Cancel
         </button>
         <div class="modal fade tweet-delete-confirm-{{_id}}" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog modal-sm">
+          <div class="modal-dialog modal-md">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Delete Repeeet?</h4>
+                <h4 class="modal-title">Confirm Stop Repeeeting</h4>
               </div>
               <div class="modal-body">
-                <p>{{defaultText}}</p>
+                <p>Are you sure you want to stop repeeeting this tweet?</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="tweet-delete btn btn-danger" data-dismiss="modal">Delete Tweet</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Continue Repeeeting</button>
+                <button type="button" class="tweet-delete btn btn-danger" data-dismiss="modal">Stop Repeeeting</button>
               </div>
             </div>
           </div>
