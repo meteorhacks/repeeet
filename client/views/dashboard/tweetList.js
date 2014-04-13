@@ -19,7 +19,7 @@ function hasLatestVariation (t1, t2) {
 function getLatest(variations) {
   var recent = Number.POSITIVE_INFINITY;
   for(var i=variations.length;i-->0;)
-    if(variations[i].enabled && variations[i].time < latest)
+    if(variations[i].enabled && variations[i].time < recent)
       recent = variations[i].time;
-  return latest;
+  return recent;
 }
