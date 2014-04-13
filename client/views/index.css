@@ -62,3 +62,14 @@ textarea {
 .homepage-subheading small {
   color: #333;
 }
+
+.btn.variation-time-button:focus,
+.btn.variation-time-button:active:focus,
+.btn.variation-time-button.active:focus
+.btn.variation-time-button {
+  outline: none;
+}
+
+.variation-time-button.selected {
+  font-weight: bold;
+}

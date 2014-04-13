@@ -34,5 +34,8 @@ function getVariations () {
 }
 
 function setVisibleVariation (e) {
+  var els = e.target.parentElement.getElementsByClassName('variation-time-button');
+  for(var i=els.length; i-->0;) els[i].classList.remove('selected');
+  e.target.classList.add('selected');
   Session.set(this.__tweet._id, this.text || this.__tweet.defaultText);
 }
