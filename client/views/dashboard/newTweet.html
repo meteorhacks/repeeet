@@ -48,7 +48,7 @@
 
   <div class="tweet-form">
     <div class="form-group">
-      <p><small>{{length}} Characters</small></p>
+      <p><small class="{{#if overLimit}}text-danger{{/if}}">{{length}} Characters Left</small></p>
       <textarea name="main" class="newtweet-text form-control">{{buffer.defaultText}}</textarea>
     </div>
   </div>

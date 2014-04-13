@@ -2,6 +2,7 @@ Template.newTweet.helpers({
   settings: getSettings,
   buffer: getBuffer,
   length: getLength,
+  overLimit: isOverLimit,
   variations: getVariations,
   toDay: Helpers.getDay
 });
@@ -35,9 +36,19 @@ function getLength () {
   var tweet = Session.get('buffer');
   var index = this.__index;
   if (index !== undefined && tweet.variations[index].text) {
-    return Helpers.getTweetLength(tweet.variations[index].text);
+    return 140 - Helpers.getTweetLength(tweet.variations[index].text);
   } else {
-    return Helpers.getTweetLength(tweet.defaultText);
+    return 140 - Helpers.getTweetLength(tweet.defaultText);
+  }
+}
+
+function isOverLimit () {
+  var tweet = Session.get('buffer');
+  var index = this.__index;
+  if (index !== undefined && tweet.variations[index].text) {
+    return Helpers.getTweetLength(tweet.variations[index].text) > 140;
+  } else {
+    return Helpers.getTweetLength(tweet.defaultText) > 140;
   }
 }
 
