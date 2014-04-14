@@ -4,6 +4,7 @@
     "handlebar-helpers": {},
     "npm": {},
     "accounts-ui-bootstrap-3-blaze": {},
-    "iron-router": {}
+    "iron-router": {},
+    "fast-render": {}
   }
 }

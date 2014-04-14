@@ -6,7 +6,8 @@
       "handlebar-helpers": {},
       "npm": {},
       "accounts-ui-bootstrap-3-blaze": {},
-      "iron-router": {}
+      "iron-router": {},
+      "fast-render": {}
     },
     "packages": {
       "bootstrap-3": {
@@ -33,6 +34,11 @@
         "git": "https://github.com/EventedMind/iron-router.git",
         "tag": "v0.7.0",
         "commit": "05f34bc48c4cad9fdaa366c1ddcabe6980232ece"
+      },
+      "fast-render": {
+        "git": "https://github.com/arunoda/meteor-fast-render.git",
+        "tag": "v0.1.26",
+        "commit": "bfabe15c5acfbdec7c3a815b956bb49c41421ab2"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",

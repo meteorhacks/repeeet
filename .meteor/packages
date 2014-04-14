@@ -13,3 +13,5 @@ npm
 accounts-ui-bootstrap-3-blaze
 iron-router
 retry
+accounts-password
+fast-render

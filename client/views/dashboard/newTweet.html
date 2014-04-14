@@ -3,8 +3,8 @@
   <div class="tweet-options">
     <div class="form-group">
       <div class="btn-group dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-          Repeeet {{settings.repeatCount}} times<span class="caret"></span>
+        <button class="btn btn-modified dropdown-toggle" type="button" data-toggle="dropdown">
+          Repeeet {{settings.repeatCount}} times <span class="caret"></span>
         </button>
         <ul class="newtweet-repeat-count dropdown-menu" role="menu">
           {{#each settings.repeatCountOptions}}
@@ -13,7 +13,7 @@
         </ul>
       </div>
       <div class="btn-group dropdown">
-        <button class="btn btn-default  dropdown-toggle" type="button" data-toggle="dropdown">
+        <button class="btn btn-modified  dropdown-toggle" type="button" data-toggle="dropdown">
           Every {{settings.intervalValue}} <span class="caret"></span>
         </button>
         <ul class="newtweet-interval-value dropdown-menu">
@@ -23,7 +23,7 @@
         </ul>
       </div>
       <div class="btn-group dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+        <button class="btn btn-modified dropdown-toggle" type="button" data-toggle="dropdown">
           {{settings.intervalUnit}} <span class="caret"></span>
         </button>
         <ul class="newtweet-interval-unit dropdown-menu">
@@ -81,7 +81,7 @@
   {{/if}}
 
   <div class="form-group">
-    <button class="newtweet-post btn btn-block btn-primary">
+    <button class="btn-block newtweet-post">
       R<small><span class="glyphicon glyphicon-repeat"></span></small>PEEET
     </button>
   </div>
