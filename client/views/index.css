@@ -103,3 +103,16 @@ textarea {
   padding-bottom: 3px;
   border-bottom: 2px solid rgb(90, 190, 34);
 }
+
+.navbar-modified {
+  background-color: #FAFFF7;
+  border-color: #E4FFE0;
+}
+
+
+.form-control:focus {
+  border-color: #BADFC6;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(216, 238, 199, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(203, 255, 205, 0.6);
+}
