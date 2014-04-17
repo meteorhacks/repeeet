@@ -4,7 +4,7 @@ Template.newTweet.helpers({
   length: getLength,
   overLimit: isOverLimit,
   variations: getVariations,
-  toDay: Helpers.getDay
+  toDay: helper.getDay
 });
 
 Template.newTweet.events({
@@ -20,8 +20,8 @@ Template.newTweet.events({
 });
 
 Meteor.startup(function () {
-  Session.setDefault('settings', Defaults.Settings());
-  Session.setDefault('buffer', Defaults.Tweets());
+  Session.setDefault('settings', helper.getDefaultSettings());
+  Session.setDefault('buffer', helper.getDefaultTweet());
 })
 
 function getSettings () {
@@ -36,9 +36,9 @@ function getLength () {
   var tweet = Session.get('buffer');
   var index = this.__index;
   if (index !== undefined && tweet.variations[index].text) {
-    return 140 - Helpers.getTweetLength(tweet.variations[index].text);
+    return 140 - helper.getTweetLength(tweet.variations[index].text);
   } else {
-    return 140 - Helpers.getTweetLength(tweet.defaultText);
+    return 140 - helper.getTweetLength(tweet.text);
   }
 }
 
@@ -46,9 +46,9 @@ function isOverLimit () {
   var tweet = Session.get('buffer');
   var index = this.__index;
   if (index !== undefined && tweet.variations[index].text) {
-    return Helpers.getTweetLength(tweet.variations[index].text) > 140;
+    return helper.getTweetLength(tweet.variations[index].text) > 140;
   } else {
-    return Helpers.getTweetLength(tweet.defaultText) > 140;
+    return helper.getTweetLength(tweet.text) > 140;
   }
 }
 
@@ -91,21 +91,21 @@ function updateIntervalUnit (e) {
 function updateVariations () {
   var buffer = Session.get('buffer');
   var settings = Session.get('settings');
-  buffer.variations = Helpers.getVariations(null, settings);
+  buffer.variations = helper.getVariations(null, settings);
   Session.set('buffer', buffer);
 }
 
 function resetVariations () {
   var buffer = Session.get('buffer');
   var settings = Session.get('settings');
-  buffer.variations = Helpers.getEmptyVariations(null, settings);
+  buffer.variations = helper.getEmptyVariations(null, settings);
   Session.set('buffer', buffer);
 }
 
 function updatePostText (e) {
   Meteor.defer(function () {
     var buffer = Session.get('buffer');
-    buffer.defaultText = e.target.value;
+    buffer.text = e.target.value;
     Session.set('buffer', buffer);
   });
 }
@@ -125,10 +125,10 @@ function updateVariationText (e) {
 function postNewTweet () {
   if (Meteor.userId()) {
     var tweet = Session.get('buffer');
-    var error = Helpers.validateTweet(tweet);
+    var error = helper.validateTweet(tweet);
     if (!error) {
       Meteor.call('repeeet', tweet);
-      Session.set('buffer', Defaults.Tweets());
+      Session.set('buffer', helper.getDefaultTweet());
     } else {
       // TODO Improve error display
       alert(error);

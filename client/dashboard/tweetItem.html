@@ -1,5 +1,5 @@
 <template name="tweetItem">
-  <div class="tweet-item panel panel-default">
+  <div id="tweetItem" class="tweet-item panel panel-default">
     <div class="panel-body">
       <p class="lead">
         {{text}}
@@ -7,7 +7,7 @@
     </div>
     <div class="panel-footer">
       {{#each variations}}
-      <button class="btn btn-default btn-xs variation-time-button {{#if enabled}}{{else}}btn-success{{/if}}">{{toDay time}}</button>
+      <button class="btn btn-default btn-xs variation-time-button {{#if sent}}tweet-sent{{else}}{{/if}} {{#if error}}tweet-error{{else}}{{/if}} {{#if selected}}selected{{else}}{{/if}}">{{toDay time}}</button>
       {{/each}}
       <div class="pull-right">
         <button class="btn btn-danger btn-xs" data-toggle="modal" data-target=".tweet-delete-confirm-{{_id}}">
@@ -30,7 +30,6 @@
             </div>
           </div>
         </div>
-        <!-- <button class="tweet-delete btn btn-default btn-xs" data-toggle="modal" data-target=".tweet-item-delete-confirm"><span class="glyphicon glyphicon-remove"></span></button> -->
       </div>
       <br>
     </div>

@@ -1,6 +1,6 @@
 
 Template.tweetItem.helpers({
-  toDay: Helpers.getDay,
+  toDay: helper.getDay,
   text: getDisplayText,
   variations: getVariations,
 });
@@ -11,17 +11,16 @@ Template.tweetItem.events({
 });
 
 function deleteTweet (e) {
+  var self = this;
   $(e.target).parents('.modal').modal('hide');
   $(e.target).parents('.tweet-item').hide();
-  var self = this;
   Meteor.setTimeout(function () {
     Meteor.call('remove', self._id);
   }, 1000);
 }
 
 function getDisplayText () {
-  console.log('GET', this);
-  return Session.get(this._id) || this.defaultText;
+  return Session.get(this._id) || this.text;
 }
 
 function getVariations () {
@@ -30,6 +29,7 @@ function getVariations () {
     variations[i].__index = i;
     variations[i].__tweet = this;
   }
+  variations[0].selected = true;
   return variations;
 }
 
@@ -37,5 +37,5 @@ function setVisibleVariation (e) {
   var els = e.target.parentElement.getElementsByClassName('variation-time-button');
   for(var i=els.length; i-->0;) els[i].classList.remove('selected');
   e.target.classList.add('selected');
-  Session.set(this.__tweet._id, this.text || this.__tweet.defaultText);
+  Session.set(this.__tweet._id, this.text || this.__tweet.text);
 }

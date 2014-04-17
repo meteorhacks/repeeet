@@ -5,9 +5,7 @@ Template.tweetsList.helpers({
 function getTweets () {
   if (Meteor.userId()) {
     var tweets = Tweets.find({userId: Meteor.userId()}).fetch();
-    console.log(JSON.stringify(tweets));
     tweets.sort(hasLatestVariation);
-    console.log(JSON.stringify(tweets));
     return tweets;
   };
 }
@@ -19,7 +17,7 @@ function hasLatestVariation (t1, t2) {
 function getLatest(variations) {
   var recent = Number.POSITIVE_INFINITY;
   for(var i=variations.length;i-->0;)
-    if(variations[i].enabled && variations[i].time < recent)
+    if(!variations[i].sent && !variations[i].error && variations[i].time < recent)
       recent = variations[i].time;
   return recent;
 }
