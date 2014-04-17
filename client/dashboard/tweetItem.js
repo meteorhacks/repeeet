@@ -20,7 +20,9 @@ function deleteTweet (e) {
 }
 
 function getDisplayText () {
-  return Session.get(this._id) || this.text;
+  var text = Session.get(this._id) || this.text;
+  var textWithLinks = helper.formatTweetText(text);
+  return textWithLinks;
 }
 
 function getVariations () {
