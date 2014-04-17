@@ -117,16 +117,26 @@ textarea {
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(203, 255, 205, 0.6);
 }
 
-.btn-default.tweet-sent,
-.btn-default.tweet-sent:hover
-.btn-default.tweet-sent:focus
-.btn-default.tweet-sent:active {
-  background: rgba(100, 255, 100, 0.2);
+.btn-default.tweet-sent {
+  background: rgba(50, 150, 50, 0.1);
+  border: solid 1px rgba(50, 150, 50, 0.3);
 }
 
-.btn-default.tweet-error,
-.btn-default.tweet-error:hover
-.btn-default.tweet-error:focus
+.btn-default.tweet-sent:hover,
+.btn-default.tweet-sent:focus,
+.btn-default.tweet-sent:active {
+  background: rgba(50, 150, 50, 0.2);
+  border: solid 1px rgba(50, 150, 50, 0.6);
+}
+
+.btn-default.tweet-error {
+  background: rgba(150, 50, 50, 0.1);
+  border: solid 1px rgba(150, 50, 50, 0.3);
+}
+
+.btn-default.tweet-error:hover,
+.btn-default.tweet-error:focus,
 .btn-default.tweet-error:active {
-  background: rgba(255, 100, 100, 0.2);
+  background: rgba(150, 50, 50, 0.2);
+  border: solid 1px rgba(150, 50, 50, 0.6);
 }
