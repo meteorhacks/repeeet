@@ -21,3 +21,10 @@ Meteor.startup(function () {
     }
   }
 });
+
+//APM Config
+
+if(Meteor.settings && Meteor.settings.apm) {
+  var apmInfo = Meteor.settings.apm;
+  Apm.connect(apmInfo.appId, apmInfo.appSecret);
+}

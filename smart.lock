@@ -7,7 +7,8 @@
       "npm": {},
       "accounts-ui-bootstrap-3-blaze": {},
       "iron-router": {},
-      "fast-render": {}
+      "fast-render": {},
+      "apm": {}
     },
     "packages": {
       "bootstrap-3": {
@@ -32,18 +33,23 @@
       },
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",
-        "tag": "v0.7.0",
-        "commit": "05f34bc48c4cad9fdaa366c1ddcabe6980232ece"
+        "tag": "v0.7.1",
+        "commit": "d1ffb3f06ea4c112132b030f2eb1a70b81675ecb"
       },
       "fast-render": {
         "git": "https://github.com/arunoda/meteor-fast-render.git",
-        "tag": "v0.1.26",
-        "commit": "bfabe15c5acfbdec7c3a815b956bb49c41421ab2"
+        "tag": "v0.2.2",
+        "commit": "2a7298d72a84b85e989ec2cc9300bbea7c159eb8"
+      },
+      "apm": {
+        "git": "https://github.com/arunoda/meteor-apm-client.git",
+        "tag": "v1.0.0",
+        "commit": "672c94c9383ecca86da5157fa28fd1bcc754c7c3"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
-        "tag": "v0.2.2",
-        "commit": "8bc53798fe5965669ae67c72f91829fcfdceabfd"
+        "tag": "v0.2.4",
+        "commit": "b40e9b0612329288d75cf52ad14a7da64bb8618f"
       }
     }
   }

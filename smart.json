@@ -5,6 +5,7 @@
     "npm": {},
     "accounts-ui-bootstrap-3-blaze": {},
     "iron-router": {},
-    "fast-render": {}
+    "fast-render": {},
+    "apm": {}
   }
 }
