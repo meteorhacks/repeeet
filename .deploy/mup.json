@@ -1,0 +1,26 @@
+{
+  "servers": [
+    {
+      "host": "my-repeeet-server.com",
+      "username": "root",
+      "password": "password",
+      // Or login using private key
+      //"pem": "/path/to/my/private/key"
+    }
+  ],
+  
+  "env": {
+    "PORT": 80,
+    "DISABLE_WEBSOCKETS": true,
+    "ROOT_URL": "http://my-repeeet-server.com",
+    "TWITTER_API_KEY": "----twitter-api-key----",
+    "TWITTER_API_SECRET": "----twitter-api-secret----"
+  },
+
+  "setupMongo": true,
+  "setupNode": true,
+  "nodeVersion": "0.10.26",
+  "setupPhantom": true,
+  "app": "../",
+  "deployCheckWaitTime": 15
+}
