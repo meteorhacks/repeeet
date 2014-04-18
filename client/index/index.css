@@ -86,6 +86,13 @@ textarea {
   background-color: rgb(250, 255, 250);
 }
 
+.invite-button {
+  color: #fff;
+  background-color: #797EB8;
+  border-color: #6E6674;
+}
+
+
 .newtweet-post {
   background-color: rgb(95, 156, 76);
   border: 1px solid rgb(81, 184, 1);
