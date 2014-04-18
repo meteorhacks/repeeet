@@ -3,7 +3,7 @@
     {
       "host": "my-repeeet-server.com",
       "username": "root",
-      "password": "password",
+      "password": "password"
       // Or login using private key
       //"pem": "/path/to/my/private/key"
     }
