@@ -5,11 +5,3 @@ Meteor.publish('tweets', function() {
     this.ready();
   }
 });
-
-Meteor.publish('currentUser', function() {
-  if(this.userId) {
-    return Meteor.users.find(this.userId);
-  } else {
-    this.ready();
-  }
-});

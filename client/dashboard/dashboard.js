@@ -3,5 +3,8 @@ Template.dashboard.helpers({
 });
 
 function getUserEmail () {
-  return Meteor.user().profile.email;
+  var user = Meteor.user();
+  if(user && user.profile && user.profile.email) {
+    return user.profile.email;
+  }
 }
